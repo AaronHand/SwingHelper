@@ -77,8 +77,9 @@ public class Swings_DB {
             //}
 
             // insert default/test rows: id, date, player, filename
-            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + System.currentTimeMillis() + ", 'Stefano', 'Swing1.mp4')");
-            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + System.currentTimeMillis() + ", 'Aaron', 'Swing2.mp4')");
+            long time = System.currentTimeMillis();
+            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Stefano', 'Swing1.mp4')");
+            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Aaron', 'Swing_two.mp4')");
 
         }
 
