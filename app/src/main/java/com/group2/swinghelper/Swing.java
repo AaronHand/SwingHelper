@@ -5,6 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * TODO: add comment attribute to the Swing object and in the DB
+ */
+
+
+
+/**
  * Created by Stefano on 7/29/15.
  */
 public class Swing {

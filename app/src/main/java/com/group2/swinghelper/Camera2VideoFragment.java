@@ -59,6 +59,13 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+
+/**
+ * TODO:
+ * -
+ *
+ */
+
 public class Camera2VideoFragment extends Fragment implements View.OnClickListener {
 
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
@@ -512,7 +519,7 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
     }
 
     private File getVideoFile(Context context) {
-        return new File(context.getExternalFilesDir(null), "video.mp4");
+        return new File(context.getExternalFilesDir(null), "video" + SwingDB.getMaxID() + ".mp4");
     }
 
     private void startRecordingVideo() {

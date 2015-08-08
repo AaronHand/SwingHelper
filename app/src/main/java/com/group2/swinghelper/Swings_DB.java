@@ -9,6 +9,17 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+
+/**
+ * TODO:
+ * - add comment attribute to the Swing object and in the DB
+ * - implement getMaxID() from DB, it will return a number
+ */
+
+
+
+
+
 /**
  * Created by Stefano on 7/29/15.
  */
@@ -154,9 +165,9 @@ public class Swings_DB {
     }
 
     //retrieve a Swing (a row) with a specific ID from the DB
-    public Swing getLastSwing() {
+    public Swing getMaxID() {
 
-        this.openReadableDB();
+        /*this.openReadableDB();
 
         String[] columns = {SWING_ID, SWING_DATE, SWING_PLAYER, SWING_FILE_NAME};
         String where = null;
@@ -172,7 +183,7 @@ public class Swings_DB {
         this.closeCursor(cursor);
         this.closeDB();
 
-        return swing;
+        return swing;*/
     }
 
     //add a row of data into the TIP table
