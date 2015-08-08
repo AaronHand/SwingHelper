@@ -165,7 +165,7 @@ public class Swings_DB {
     }
 
     //retrieve a Swing (a row) with a specific ID from the DB
-    public Swing getMaxID() {
+    public static String getMaxID() {
 
         /*this.openReadableDB();
 
@@ -181,9 +181,9 @@ public class Swings_DB {
         Swing swing = getSwingFromCursor(cursor);
 
         this.closeCursor(cursor);
-        this.closeDB();
+        this.closeDB();*/
 
-        return swing;*/
+        return "1";
     }
 
     //add a row of data into the TIP table
