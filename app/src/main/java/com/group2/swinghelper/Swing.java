@@ -18,6 +18,7 @@ public class Swing {
     private long id;
     private long dateMillis;
     private String player;
+    private String description;
     private String fileName;
 
 
@@ -30,17 +31,19 @@ public class Swing {
     }
 
 
-    public Swing(long dateMillis, String player, String fileName) {
+    public Swing(long dateMillis, String player, String description, String fileName) {
         //this.setId(id);
         this.setDateMillis(dateMillis);
         this.setPlayer(player);
+        this.setDescription(description);
         this.setFileName(fileName);
     }
 
-    public Swing(long id, long dateMillis, String player, String fileName) {
+    public Swing(long id, long dateMillis, String player, String description, String fileName) {
         this.setId(id);
         this.setDateMillis(dateMillis);
         this.setPlayer(player);
+        this.setDescription(description);
         this.setFileName(fileName);
     }
 
@@ -64,12 +67,8 @@ public class Swing {
 
 
     //setters
-    public void setId(long id) {
-        this.id = id;
-    }
-    public void setDateMillis(long dateMillis) {
-        this.dateMillis = dateMillis;
-    }
+    public void setId(long id) { this.id = id; }
+    public void setDateMillis(long dateMillis) { this.dateMillis = dateMillis; }
     public void setPlayer(String player) {
         this.player = player;
     }
@@ -82,4 +81,11 @@ public class Swing {
     public String toString() { return getDateStringFormatted(); }
 
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
