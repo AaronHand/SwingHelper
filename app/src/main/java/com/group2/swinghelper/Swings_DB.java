@@ -164,7 +164,7 @@ public class Swings_DB {
         this.openReadableDB();
         String[] columns = {SWING_ID, SWING_DATE, SWING_PLAYER, SWING_DESCRIPTION, SWING_FILE_NAME};
         Cursor cursor = db.query(SWINGS_TABLE, columns, null, null, null, null, null);
-        ArrayList<Swing> swings = new ArrayList<Swing>();
+        ArrayList<Swing> swings = new ArrayList<>();
         while (cursor.moveToNext()) {
             swings.add(getSwingFromCursor(cursor));
         }
