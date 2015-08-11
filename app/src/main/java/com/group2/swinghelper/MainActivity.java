@@ -7,19 +7,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnLaunch;
+    private Button DarkSide;
+    private Button btnList;
+    private Button btnSend;
+    private RelativeLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainLayout=(RelativeLayout)findViewById(R.id.myLayout);
         btnLaunch = (Button) findViewById(R.id.btnLaunch);
         btnLaunch.setOnClickListener(this);
-
+        DarkSide = (Button) findViewById(R.id.DarkSide);
+        DarkSide.setOnClickListener(this);
+        btnList = (Button) findViewById(R.id.btnList);
+        btnList.setOnClickListener(this);
+        btnSend = (Button) findViewById(R.id.btnSend);
+        btnSend.setOnClickListener(this);
 
     }
 
@@ -47,7 +58,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this,CameraActivity.class);
-        startActivity(intent);
+        switch(v.getId()) {
+            case R.id.btnLaunch:
+                Intent intent = new Intent(this, CameraActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.DarkSide:
+                mainLayout.setBackgroundResource(R.drawable.vader);
+                break;
+            case R.id.btnList:
+                //ToDo List code goes here
+                break;
+            case R.id.btnSend:
+                //ToDo Send code goes here
+                break;
+        }
     }
 }
