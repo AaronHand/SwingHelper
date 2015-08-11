@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnList.setOnClickListener(this);
         btnSend = (Button) findViewById(R.id.btnSend);
         btnSend.setOnClickListener(this);
+        mainLayout.setBackgroundResource(R.drawable.golfing);
 
     }
 
