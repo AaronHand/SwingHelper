@@ -73,6 +73,12 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
     }
 
     /**
+     * LINK for storage directory
+     */
+    private static final String FILES_DIR = "/Videos/";
+    private int filename;
+
+    /**
      * An {@link AutoFitTextureView} for camera preview.
      */
     private AutoFitTextureView mTextureView;
@@ -165,6 +171,13 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
     /**
      * {@link CameraDevice.StateCallback} is called when {@link CameraDevice} changes its status.
      */
+
+    /**
+     * DBCONN
+     *
+     */
+
+
     private CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
 
         @Override
@@ -264,6 +277,7 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
         mButtonVideo = (Button) view.findViewById(R.id.video);
         mButtonVideo.setOnClickListener(this);
         view.findViewById(R.id.info).setOnClickListener(this);
+
     }
 
     @Override
@@ -406,7 +420,7 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
             assert texture != null;
             texture.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
             mPreviewBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
-            List<Surface> surfaces = new ArrayList<Surface>();
+            List<Surface> surfaces = new ArrayList<>();
 
             Surface previewSurface = new Surface(texture);
             surfaces.add(previewSurface);
@@ -512,7 +526,13 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
     }
 
     private File getVideoFile(Context context) {
-        return new File(context.getExternalFilesDir(null),"Video.mp4");
+        Swings_DB db = new Swings_DB(context);
+        int swingID = Swings_DB.getMaxID();
+        swingID++;
+        Swing swing = new Swing(FILES_DIR + swingID +".mp4");
+        db.insertSwing(swing);
+        return new File(context.getExternalFilesDir(FILES_DIR),swingID+".mp4");
+
     }
 
     private void startRecordingVideo() {

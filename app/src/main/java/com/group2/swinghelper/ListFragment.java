@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
+ * A fragment representing a list of Items.
  * <p>
  * Large screen devices (such as tablets) are supported by replacing the ListView
  * with a GridView.

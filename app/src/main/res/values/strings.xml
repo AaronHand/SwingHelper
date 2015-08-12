@@ -31,10 +31,8 @@
         It was created as capstone project for the Advance Android (ITC298) class during the Summer quarter 2015.
         \n\n
         © August 2015</string>
-
-
-
-
+    <string name="intro_message">message</string>
+    <string name="stop">stop</string>
 
 
 </resources>

@@ -22,6 +22,34 @@ public class Swing {
     private String fileName;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //constructors
     public Swing() {
         setId(0);
@@ -29,6 +57,13 @@ public class Swing {
         setPlayer("");
         setDescription("");
         setFileName("");
+    }
+
+    public Swing(String filename){
+        this.setDateMillis(System.currentTimeMillis());
+        this.setDescription("");
+        this.setPlayer("");
+        this.setFileName(filename);
     }
 
     public Swing(long dateMillis, String player, String description, String fileName) {
