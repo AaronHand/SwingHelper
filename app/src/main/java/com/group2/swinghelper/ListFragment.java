@@ -78,16 +78,14 @@ public class ListFragment extends Fragment implements AbsListView.OnItemClickLis
 
         Swings_DB db = new Swings_DB(getActivity());
 
-        ArrayList<Swing> swings = db.getAllSwings();
-        ArrayList<String> swingscat = new ArrayList<>();
-        for(Swing swing : swings){
-            swingscat.add(swing.toString());
+        ArrayList<Swing> AllSwings = db.getAllSwings();
+        ArrayList<String> AllSwingsString = new ArrayList<>();
+        for(Swing swing : AllSwings){
+            AllSwingsString.add(swing.toString());
         }
 
-
-        // TODO: Change Adapter to display your content
         mAdapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, swingscat);
+                android.R.layout.simple_list_item_1, android.R.id.text1, AllSwingsString);
     }
 
     @Override
