@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * TODO: add comment attribute to the Swing object and in the DB
+ * TODO:
  */
 
 
@@ -27,12 +27,11 @@ public class Swing {
         setId(0);
         setDateMillis(System.currentTimeMillis());
         setPlayer("");
+        setDescription("");
         setFileName("");
     }
 
-
     public Swing(long dateMillis, String player, String description, String fileName) {
-        //this.setId(id);
         this.setDateMillis(dateMillis);
         this.setPlayer(player);
         this.setDescription(description);
@@ -49,9 +48,7 @@ public class Swing {
 
 
     //getters
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
     public long getDateMillis() {
         return dateMillis;
     }
@@ -63,14 +60,16 @@ public class Swing {
         return sdf.format(date);
     }
     public String getPlayer() { return player; }
+    public String getDescription() { return description; }
     public String getFileName() { return fileName; }
 
 
     //setters
     public void setId(long id) { this.id = id; }
     public void setDateMillis(long dateMillis) { this.dateMillis = dateMillis; }
-    public void setPlayer(String player) {
-        this.player = player;
+    public void setPlayer(String player) { this.player = player; }
+    public void setDescription(String description) {
+        this.description = description;
     }
     public void setFileName(String fileName) {
         this.fileName = fileName;
@@ -78,14 +77,16 @@ public class Swing {
 
 
     //toString
-    public String toString() { return getDateStringFormatted(); }
+    public String toString() {
 
-
-    public String getDescription() {
-        return description;
+        String string =
+                getDateStringFormatted() + ", " +
+                getPlayer() + ", " +
+                getDescription() + ", " +
+                getFileName();
+        return string;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+
+
 }

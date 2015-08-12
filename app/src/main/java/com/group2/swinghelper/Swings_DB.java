@@ -12,11 +12,7 @@ import java.util.ArrayList;
 
 /**
  * TODO:
- * - add comment attribute to the Swing object and in the DB
  */
-
-
-
 
 
 /**
@@ -150,12 +146,10 @@ public class Swings_DB {
         }
     }
 
-    //return the  a Swing (a row) with a specific ID from the DB
+    //return the maximum ID currently present in the DB
     public static int getMaxID() {
         return lastID;
     }
-
-
 
 
     // public methods
