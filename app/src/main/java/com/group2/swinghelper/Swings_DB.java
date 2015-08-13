@@ -158,39 +158,17 @@ public class Swings_DB {
 
 
     // public methods
-    public ArrayList<ContentValues> getAllSwings() {
+    public Cursor getAllSwings() {
 
         this.openReadableDB();
         String[] columns = {SWING_ID, SWING_DATE, SWING_PLAYER, SWING_DESCRIPTION, SWING_FILE_NAME};
         Cursor cursor = db.query(SWINGS_TABLE, columns, null, null, null, null, null);
-        //ArrayList<Swing> swings = new ArrayList<>();
-        ArrayList<ContentValues> cvl = new ArrayList<>();
-        ContentValues cv = new ContentValues();
+        /*ArrayList<Swing> swings = new ArrayList<>();
         while (cursor.moveToNext()) {
-            //swings.add(getSwingFromCursor(cursor));
-            cv.put("Date",cursor.getInt(1));
-            cv.put("Player",cursor.getString(2));
-            cv.put("Description",cursor.getString(3));
-            cv.put("File",cursor.getString(4));
-            cvl.add(cv);
-        }
+            swings.add(getSwingFromCursor(cursor));
 
-
-
-        return cvl;
-
-        /*        //Define the position of the columns in the table
-        SWING_ID_COL = 0,
-        SWING_DATE_COL = 1,
-        SWING_PLAYER_COL = 2,
-        SWING_DESCRIPTION_COL = 3,
-        SWING_FILE_NAME_COL = 4;*/
-
-
-
-
-        //this.closeCursor(cursor);
-        //return swings;
+        }*/
+        return cursor;
     }
 
     //add a row of data into the TIP table
@@ -208,7 +186,6 @@ public class Swings_DB {
         this.openWritableDB();
         //insert the new row data into the DB (from the ContentValues object)
         db.insert(SWINGS_TABLE, null, cv);
-        //close the DB connection
     }
 
     //update (modify) a row in the swings table

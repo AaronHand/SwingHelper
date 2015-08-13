@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mainLayout.setBackgroundResource(R.drawable.vader);
                 break;
             case R.id.btnList:
-                Intent intent2 = new Intent(this,galleryActivity.class);
+                Intent intent2 = new Intent(this,GalleryActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.btnSend:

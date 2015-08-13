@@ -33,6 +33,11 @@
         © August 2015</string>
     <string name="intro_message">message</string>
     <string name="stop">stop</string>
+    <string name="title_activity_gallery">Gallery Activity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_single_fragment">SingleFragmentActivity</string>
+    <string name="thumbnail">swing</string>
 
 
 </resources>
