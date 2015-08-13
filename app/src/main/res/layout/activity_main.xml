@@ -1,8 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:id="@+id/myLayout">
+    android:id="@+id/myLayout"
+    android:paddingBottom="20dp">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/DarkSide"
+        android:id="@+id/DarkSide"
+        android:layout_above="@+id/btnLaunch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:layout_width="110dp"
@@ -13,26 +24,21 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Video List"
+        android:text="@string/btnList"
         android:id="@+id/btnList"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/btnLaunch" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp" />
 
     <Button
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send Video"
+        android:text="@string/btnSend"
         android:id="@+id/btnSend"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go to the Dark Side"
-        android:id="@+id/DarkSide"
-        android:layout_above="@+id/btnLaunch"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>

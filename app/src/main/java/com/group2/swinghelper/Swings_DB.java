@@ -9,6 +9,12 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+
+/**
+ * TODO:
+ */
+
+
 /**
  * Created by Stefano on 7/29/15.
  */
@@ -24,6 +30,7 @@ public class Swings_DB {
             SWING_ID = "_id",
             SWING_DATE = "date",
             SWING_PLAYER = "player",
+            SWING_DESCRIPTION = "description",
             SWING_FILE_NAME = "fileName",
 
         // CREATE table statement, with the following relations:
@@ -33,6 +40,7 @@ public class Swings_DB {
                     SWING_ID          + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     SWING_DATE   + " INTEGER, " +
                     SWING_PLAYER + " TEXT, " +
+                    SWING_DESCRIPTION + " TEXT, " +
                     SWING_FILE_NAME + " TEXT);",
 
         // DROP table statement
@@ -46,12 +54,14 @@ public class Swings_DB {
         SWING_ID_COL = 0,
         SWING_DATE_COL = 1,
         SWING_PLAYER_COL = 2,
-        SWING_FILE_NAME_COL = 3;
+        SWING_DESCRIPTION_COL = 3,
+        SWING_FILE_NAME_COL = 4;
 
 
     // database and database helper objects
-    private SQLiteDatabase db;
+    private static SQLiteDatabase db;
     private DBHelper dbHelper;
+    private static int lastID = 0;
 
     //DB constructor
     public Swings_DB (Context context) {
@@ -78,8 +88,10 @@ public class Swings_DB {
 
             // insert default/test rows: id, date, player, filename
             long time = System.currentTimeMillis();
-            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Stefano', 'Swing1.mp4')");
-            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Aaron', 'Swing_two.mp4')");
+            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Stefano', 'Description1', 'Swing1.mp4')");
+            lastID++;
+            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Aaron', 'Description2', 'Swing_two.mp4')");
+            lastID++;
 
         }
 
@@ -124,6 +136,7 @@ public class Swings_DB {
                         cursor.getInt(SWING_ID_COL),
                         cursor.getInt(SWING_DATE_COL),
                         cursor.getString(SWING_PLAYER_COL),
+                        cursor.getString(SWING_DESCRIPTION_COL),
                         cursor.getString(SWING_FILE_NAME_COL));
                 return swing;
             }
@@ -133,16 +146,19 @@ public class Swings_DB {
         }
     }
 
+    //return the maximum ID currently present in the DB
+    public static int getMaxID() {
+        return lastID;
+    }
+
 
     // public methods
     public ArrayList<Swing> getAllSwings() {
-        //String where = "1";
 
         this.openReadableDB();
-        //Cursor cursor = db.query(TIP_TABLE, null, where, null, null, null, null);
-        String[] columns = {SWING_ID, SWING_DATE, SWING_PLAYER, SWING_FILE_NAME};
+        String[] columns = {SWING_ID, SWING_DATE, SWING_PLAYER, SWING_DESCRIPTION, SWING_FILE_NAME};
         Cursor cursor = db.query(SWINGS_TABLE, columns, null, null, null, null, null);
-        ArrayList<Swing> swings = new ArrayList<Swing>();
+        ArrayList<Swing> swings = new ArrayList<>();
         while (cursor.moveToNext()) {
             swings.add(getSwingFromCursor(cursor));
         }
@@ -153,28 +169,6 @@ public class Swings_DB {
         return swings;
     }
 
-    //retrieve a Swing (a row) with a specific ID from the DB
-    public Swing getLastSwing() {
-
-        this.openReadableDB();
-
-        String[] columns = {SWING_ID, SWING_DATE, SWING_PLAYER, SWING_FILE_NAME};
-        String where = null;
-        String[] whereArgs = null;
-        String groupBy = null;
-        String having = null;
-        String orderBy = SWING_DATE + " desc";
-
-        Cursor cursor = db.query(SWINGS_TABLE, columns, where, whereArgs, groupBy, having, orderBy);
-        cursor.moveToFirst();
-        Swing swing = getSwingFromCursor(cursor);
-
-        this.closeCursor(cursor);
-        this.closeDB();
-
-        return swing;
-    }
-
     //add a row of data into the TIP table
     public long insertSwing(Swing s) {
         //fetch the data from the Swing parameter and put it in a ContentValues object
@@ -182,6 +176,7 @@ public class Swings_DB {
         //cv.put(SWING_ID, "null"); //
         cv.put(SWING_DATE, s.getDateMillis());
         cv.put(SWING_PLAYER, s.getPlayer());
+        cv.put(SWING_DESCRIPTION, s.getDescription());
         cv.put(SWING_FILE_NAME, s.getFileName());
 
         //open the DB connection
@@ -190,6 +185,8 @@ public class Swings_DB {
         long newRowID = db.insert(SWINGS_TABLE, null, cv);
         //close the DB connection
         this.closeDB();
+        //increment lastID
+        lastID++;
         //return the ID of the new row in the table
         return newRowID;
     }
@@ -201,6 +198,7 @@ public class Swings_DB {
         //cv.put(SWING_ID, s.getId());
         cv.put(SWING_DATE, s.getDateMillis());
         cv.put(SWING_PLAYER, s.getPlayer());
+        cv.put(SWING_DESCRIPTION, s.getDescription());
         cv.put(SWING_FILE_NAME, s.getFileName());
 
         //select the row to update

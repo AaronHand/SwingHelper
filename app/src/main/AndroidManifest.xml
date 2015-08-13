@@ -16,10 +16,14 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--
+        <activity
+            android:name=".SendEmailActivity"
+            android:label="@string/app_name" >
+-->
         <activity android:name=".CameraActivity"
             android:label="@string/app_name">
             <intent-filter>
@@ -28,6 +32,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.group2.swinghelper.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.group2.swinghelper.AboutActivity"
+            android:label="@string/title_activity_about">
+        </activity>
     </application>
 
 </manifest>

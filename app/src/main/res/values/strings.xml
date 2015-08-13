@@ -1,15 +1,38 @@
 <resources>
     <string name="app_name">Swing Helper</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+<!--
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_camera">CameraActivity</string>
-    <string name="description_info">Placeholder</string>
-    <string name="record">record</string>
     <string name="intro_message">message</string>
     <string name="stop">stop</string>
+-->
+
+    <string name="DarkSide">Go to the Dark Side</string>
+
+    <string name="description_info">Placeholder</string>
+    <string name="record">record</string>
+
+    <string name="btnList">Video List</string>
+    <string name="btnSend">Send Video</string>
     <string name="btnLaunch">Take Video</string>
+
+
+
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="menu_about">About</string>
+    <string name="title_activity_about">About</string>
+    <string name="about">This app was developed by Stefano Borghi, Alexandre Daniels, Aaron Hand, Theodore Stevens at Seattle Central Community College.
+        \n\n
+        It was created as capstone project for the Advance Android (ITC298) class during the Summer quarter 2015.
+        \n\n
+        © August 2015</string>
+    <string name="intro_message">message</string>
+    <string name="stop">stop</string>
+
+
 </resources>
