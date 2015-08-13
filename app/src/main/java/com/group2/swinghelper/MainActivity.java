@@ -26,7 +26,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnLaunch;
-    private Button DarkSide;
     private Button btnList;
     private Button btnSend;
     private RelativeLayout mainLayout;
@@ -43,13 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mainLayout=(RelativeLayout)findViewById(R.id.myLayout);
         btnLaunch = (Button) findViewById(R.id.btnLaunch);
         btnLaunch.setOnClickListener(this);
-        DarkSide = (Button) findViewById(R.id.DarkSide);
-        DarkSide.setOnClickListener(this);
         btnList = (Button) findViewById(R.id.btnList);
         btnList.setOnClickListener(this);
         btnSend = (Button) findViewById(R.id.btnSend);
         btnSend.setOnClickListener(this);
-        mainLayout.setBackgroundResource(R.drawable.golfing);
     }//end onCreate()
 
     @Override
@@ -86,9 +82,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnLaunch:
                 Intent intent = new Intent(this, CameraActivity.class);
                 startActivity(intent);
-                break;
-            case R.id.DarkSide:
-                mainLayout.setBackgroundResource(R.drawable.vader);
                 break;
             case R.id.btnList:
                 //ToDo List code goes here
