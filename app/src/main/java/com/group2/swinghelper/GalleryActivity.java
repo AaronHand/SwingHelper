@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -84,9 +85,12 @@ public class GalleryActivity extends AppCompatActivity {
                 //
                 Cursor c = db.getAllSwings();
                 c.moveToPosition(position);
-                Bitmap bMap = ThumbnailUtils.createVideoThumbnail(c.getString( Swings_DB.SWING_FILE_NAME_COL), MediaStore.Video.Thumbnails.MINI_KIND);
-                thumb.setImageBitmap(bMap);
-                Log.d("--",c.getString(4));
+                //Bitmap bMap = ThumbnailUtils.createVideoThumbnail(c.getString( Swings_DB.SWING_FILE_NAME_COL), MediaStore.Video.Thumbnails.MINI_KIND);
+
+                Bitmap bitmap =ThumbnailUtils.createVideoThumbnail(Environment.getExternalStorageDirectory()+ "/Android/data/com.group2.swinghelper/files"+c.getString(Swings_DB.SWING_FILE_NAME_COL),MediaStore.Video.Thumbnails.MINI_KIND);
+                thumb.setImageBitmap(bitmap);
+                //thumb.setImageBitmap(bMap);
+                Log.d("--",Environment.getExternalStorageDirectory()+ "/Android/data/com.group2.swinghelper/files"+c.getString(Swings_DB.SWING_FILE_NAME_COL));
             }
         });
 
