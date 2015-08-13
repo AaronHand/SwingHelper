@@ -527,10 +527,11 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
 
     private File getVideoFile(Context context) {
         Swings_DB db = new Swings_DB(context);
-        int swingID = Swings_DB.getMaxID();
+        int swingID = db.getMaxID();
         swingID++;
         Swing swing = new Swing(FILES_DIR + swingID +".mp4");
         db.insertSwing(swing);
+        db.closeDB();
         return new File(context.getExternalFilesDir(FILES_DIR),swingID+".mp4");
 
     }

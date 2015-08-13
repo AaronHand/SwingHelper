@@ -114,7 +114,7 @@ public class Swings_DB {
 
     private void openWritableDB() { db = dbHelper.getWritableDatabase(); }
 
-    private void closeDB() {
+    public void closeDB() {
         if (db != null)
             db.close();
     }
@@ -131,7 +131,7 @@ public class Swings_DB {
         }
         else {
             try {
-                //create a new Tip from the cursor
+                //create a new Swing from the cursor
                 Swing swing = new Swing(
                         cursor.getInt(SWING_ID_COL),
                         cursor.getInt(SWING_DATE_COL),
@@ -147,30 +147,54 @@ public class Swings_DB {
     }
 
     //return the maximum ID currently present in the DB
-    public static int getMaxID() {
+    public int getMaxID() {
+        Cursor  cursor = db.rawQuery("select * from "+SWINGS_TABLE,null);
+        cursor.moveToLast();
+        lastID = cursor.getInt(SWING_ID_COL);
+        cursor.close();
         return lastID;
     }
 
 
+
     // public methods
-    public ArrayList<Swing> getAllSwings() {
+    public ArrayList<ContentValues> getAllSwings() {
 
         this.openReadableDB();
         String[] columns = {SWING_ID, SWING_DATE, SWING_PLAYER, SWING_DESCRIPTION, SWING_FILE_NAME};
         Cursor cursor = db.query(SWINGS_TABLE, columns, null, null, null, null, null);
-        ArrayList<Swing> swings = new ArrayList<>();
+        //ArrayList<Swing> swings = new ArrayList<>();
+        ArrayList<ContentValues> cvl = new ArrayList<>();
+        ContentValues cv = new ContentValues();
         while (cursor.moveToNext()) {
-            swings.add(getSwingFromCursor(cursor));
+            //swings.add(getSwingFromCursor(cursor));
+            cv.put("Date",cursor.getInt(1));
+            cv.put("Player",cursor.getString(2));
+            cv.put("Description",cursor.getString(3));
+            cv.put("File",cursor.getString(4));
+            cvl.add(cv);
         }
 
-        this.closeCursor(cursor);
-        this.closeDB();
 
-        return swings;
+
+        return cvl;
+
+        /*        //Define the position of the columns in the table
+        SWING_ID_COL = 0,
+        SWING_DATE_COL = 1,
+        SWING_PLAYER_COL = 2,
+        SWING_DESCRIPTION_COL = 3,
+        SWING_FILE_NAME_COL = 4;*/
+
+
+
+
+        //this.closeCursor(cursor);
+        //return swings;
     }
 
     //add a row of data into the TIP table
-    public long insertSwing(Swing s) {
+    public void insertSwing(Swing s) {
         //fetch the data from the Swing parameter and put it in a ContentValues object
         ContentValues cv = new ContentValues();
         //cv.put(SWING_ID, "null"); //
@@ -179,19 +203,15 @@ public class Swings_DB {
         cv.put(SWING_DESCRIPTION, s.getDescription());
         cv.put(SWING_FILE_NAME, s.getFileName());
 
+
         //open the DB connection
         this.openWritableDB();
         //insert the new row data into the DB (from the ContentValues object)
-        long newRowID = db.insert(SWINGS_TABLE, null, cv);
+        db.insert(SWINGS_TABLE, null, cv);
         //close the DB connection
-        this.closeDB();
-        //increment lastID
-        lastID++;
-        //return the ID of the new row in the table
-        return newRowID;
     }
 
-    //update (modify) a row in the TIP table
+    //update (modify) a row in the swings table
     public int updateSwing(Swing s) {
         //fetch the data from the Swing parameter and put it in a ContentValues object
         ContentValues cv = new ContentValues();
@@ -209,14 +229,12 @@ public class Swings_DB {
         this.openWritableDB();
         //update the data into the DB (with the data contained in the ContentValues object)
         int rowCount = db.update(SWINGS_TABLE, cv, where, whereArgs);
-        //close the DB connection
-        this.closeDB();
 
         //return the number of the row successfully updated
         return rowCount;
     }
 
-    //delete a row in the TIP table
+    //delete a row in the swings table
     public int deleteSwing(long id) {
         //select the row to delete
         String where = SWING_ID + "= ?";
@@ -226,8 +244,6 @@ public class Swings_DB {
         this.openWritableDB();
         //delete the the row
         int rowCount = db.delete(SWINGS_TABLE, where, whereArgs);
-        //close the DB connection
-        this.closeDB();
 
         //return the number of the row deleted
         return rowCount;

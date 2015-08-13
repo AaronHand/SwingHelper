@@ -91,11 +91,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mainLayout.setBackgroundResource(R.drawable.vader);
                 break;
             case R.id.btnList:
-                //ToDo List code goes here
+                Intent intent2 = new Intent(this,galleryActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.btnSend:
                 sendEmail("driveLink", "playerName");
                 break;
+
 
         }
     }//end onClick()
