@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
-    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/landscapegolfing"
+    android:background="@drawable/landscaping"
     android:id="@+id/myLayout">
 
     <Button
@@ -10,23 +10,15 @@
         android:layout_height="wrap_content"
         android:text="@string/btnLaunch"
         android:id="@+id/btnLaunch"
-        android:layout_centerVertical="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:text="Video List"
+        android:text="@string/btnList"
         android:id="@+id/btnList"
         android:layout_above="@+id/btnLaunch"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:text="Send Video"
-        android:id="@+id/btnSend"
-        android:layout_below="@+id/btnLaunch"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
