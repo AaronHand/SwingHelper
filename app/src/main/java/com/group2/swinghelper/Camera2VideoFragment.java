@@ -176,6 +176,8 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
      * DBCONN
      *
      */
+    private int swingID;
+    Swings_DB db;
 
 
     private CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
@@ -183,6 +185,8 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
         @Override
         public void onOpened(CameraDevice cameraDevice) {
             mCameraDevice = cameraDevice;
+            db = new Swings_DB(getActivity());
+            swingID =getSwingID();
             startPreview();
             mCameraOpenCloseLock.release();
             if (null != mTextureView) {
@@ -404,6 +408,7 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
             throw new RuntimeException("Interrupted while trying to lock camera closing.");
         } finally {
              mCameraOpenCloseLock.release();
+             db.closeDB();
         }
     }
 
@@ -526,12 +531,6 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
     }
 
     private File getVideoFile(Context context) {
-        Swings_DB db = new Swings_DB(context);
-        int swingID = db.getMaxID();
-        swingID++;
-        Swing swing = new Swing(FILES_DIR + swingID +".mp4");
-        db.insertSwing(swing);
-        db.closeDB();
         return new File(context.getExternalFilesDir(FILES_DIR),swingID+".mp4");
 
     }
@@ -551,6 +550,7 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
 
     private void stopRecordingVideo() {
         // UI
+        saveSwing();
         mIsRecordingVideo = false;
         mButtonVideo.setText(R.string.record);
         // Stop recording
@@ -558,8 +558,8 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
         mMediaRecorder.reset();
         Activity activity = getActivity();
         if (null != activity) {
-            Toast.makeText(activity, "Video saved: " + getVideoFile(activity),
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Video saved, "+swingID+".mp4",
+                    Toast.LENGTH_LONG).show();
         }
         startPreview();
     }
@@ -593,6 +593,18 @@ public class Camera2VideoFragment extends Fragment implements View.OnClickListen
                     })
                     .create();
         }
+
+    }
+
+    private int getSwingID(){
+        swingID = db.getMaxID();
+        swingID++;
+        return swingID;
+    }
+
+    private void saveSwing(){
+        Swing swing = new Swing(FILES_DIR + swingID +".mp4");
+        db.insertSwing(swing);
 
     }
 
