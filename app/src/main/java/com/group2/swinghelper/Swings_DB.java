@@ -88,10 +88,10 @@ public class Swings_DB {
 
             // insert default/test rows: id, date, player, filename
             long time = System.currentTimeMillis();
-            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Stefano', 'Description1', 'Swing1.mp4')");
+            /*db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Stefano', 'Description1', 'Swing1.mp4')");
             lastID++;
             db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Aaron', 'Description2', 'Swing_two.mp4')");
-            lastID++;
+            lastID++;*/
 
         }
 
@@ -148,18 +148,21 @@ public class Swings_DB {
 
     //return the maximum ID currently present in the DB
     public int getMaxID() {
+        this.openReadableDB();
         Cursor  cursor = db.rawQuery("select * from "+SWINGS_TABLE,null);
-        cursor.moveToLast();
-        lastID = cursor.getInt(SWING_ID_COL);
-        cursor.close();
-        return lastID;
+        if(cursor.getCount() != 0) {
+            cursor.moveToLast();
+            lastID = cursor.getInt(SWING_ID_COL);
+            cursor.close();
+            return lastID;
+        }
+        else return 0;
     }
 
 
 
     // public methods
     public Cursor getAllSwings() {
-
         this.openReadableDB();
         String[] columns = {SWING_ID, SWING_DATE, SWING_PLAYER, SWING_DESCRIPTION, SWING_FILE_NAME};
         Cursor cursor = db.query(SWINGS_TABLE, columns, null, null, null, null, null);
