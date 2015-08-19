@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLaunch.setOnClickListener(this);
         btnList = (Button) findViewById(R.id.btnList);
         btnList.setOnClickListener(this);
-        btnSend = (Button) findViewById(R.id.btnSend);
-        btnSend.setOnClickListener(this);
+        //btnSend = (Button) findViewById(R.id.btn);
+        //btnSend.setOnClickListener(this);
     }//end onCreate()
 
     @Override
@@ -87,9 +87,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent2 = new Intent(this,GalleryActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.btnSend:
-                sendEmail("driveLink", "playerName");
-                break;
+            //case R.id.btnSend:
+            //    sendEmail("driveLink", "playerName");
+            //    break;
 
 
         }

@@ -171,6 +171,7 @@ public class Swings_DB {
             swings.add(getSwingFromCursor(cursor));
 
         }*/
+
         return cursor;
     }
 

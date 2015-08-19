@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/landscaping"
-    android:id="@+id/myLayout">
+    android:background="@drawable/bg_landscape"
+    android:id="@+id/myLayout"
+    >
 
     <Button
         android:layout_width="110dp"
