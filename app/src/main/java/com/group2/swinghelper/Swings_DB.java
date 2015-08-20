@@ -200,9 +200,4 @@ public class Swings_DB {
         //return the number of the row deleted
         return rowCount;
     }
-
-
-
-
-
 }
