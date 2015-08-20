@@ -7,12 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.util.ArrayList;
-
-
-/**
- * TODO:
- */
 
 
 /**
@@ -79,20 +73,8 @@ public class Swings_DB {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            // create t_swing
-            //try {
             db.execSQL(CREATE_SWINGS_TABLE);
-            //} catch (SQLException e) {
-            //e.printStackTrace();
-            //}
-
-            // insert default/test rows: id, date, player, filename
             long time = System.currentTimeMillis();
-            /*db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Stefano', 'Description1', 'Swing1.mp4')");
-            lastID++;
-            db.execSQL("INSERT INTO " + SWINGS_TABLE + " VALUES (NULL, " + time + ", 'Aaron', 'Description2', 'Swing_two.mp4')");
-            lastID++;*/
-
         }
 
         @Override
@@ -131,7 +113,6 @@ public class Swings_DB {
         }
         else {
             try {
-                //create a new Swing from the cursor
                 Swing swing = new Swing(
                         cursor.getInt(SWING_ID_COL),
                         cursor.getInt(SWING_DATE_COL),
@@ -166,29 +147,19 @@ public class Swings_DB {
         this.openReadableDB();
         String[] columns = {SWING_ID, SWING_DATE, SWING_PLAYER, SWING_DESCRIPTION, SWING_FILE_NAME};
         Cursor cursor = db.query(SWINGS_TABLE, columns, null, null, null, null, null);
-        /*ArrayList<Swing> swings = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            swings.add(getSwingFromCursor(cursor));
-
-        }*/
-
         return cursor;
     }
 
     //add a row of data into the TIP table
     public void insertSwing(Swing s) {
-        //fetch the data from the Swing parameter and put it in a ContentValues object
         ContentValues cv = new ContentValues();
-        //cv.put(SWING_ID, "null"); //
         cv.put(SWING_DATE, s.getDateMillis());
         cv.put(SWING_PLAYER, s.getPlayer());
         cv.put(SWING_DESCRIPTION, s.getDescription());
         cv.put(SWING_FILE_NAME, s.getFileName());
 
-
         //open the DB connection
         this.openWritableDB();
-        //insert the new row data into the DB (from the ContentValues object)
         db.insert(SWINGS_TABLE, null, cv);
     }
 
@@ -196,7 +167,6 @@ public class Swings_DB {
     public int updateSwing(Swing s) {
         //fetch the data from the Swing parameter and put it in a ContentValues object
         ContentValues cv = new ContentValues();
-        //cv.put(SWING_ID, s.getId());
         cv.put(SWING_DATE, s.getDateMillis());
         cv.put(SWING_PLAYER, s.getPlayer());
         cv.put(SWING_DESCRIPTION, s.getDescription());
@@ -208,6 +178,7 @@ public class Swings_DB {
 
         //open the DB connection
         this.openWritableDB();
+
         //update the data into the DB (with the data contained in the ContentValues object)
         int rowCount = db.update(SWINGS_TABLE, cv, where, whereArgs);
 

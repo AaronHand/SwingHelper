@@ -5,12 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * TODO:
- */
-
-
-
-/**
  * Created by Stefano on 7/29/15.
  */
 public class Swing {
@@ -20,35 +14,6 @@ public class Swing {
     private String player;
     private String description;
     private String fileName;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //constructors
     public Swing() {
@@ -87,6 +52,7 @@ public class Swing {
     public long getDateMillis() {
         return dateMillis;
     }
+
     @SuppressLint("SimpleDateFormat")
     public String getDateStringFormatted() {
         // set the date with formatting
@@ -94,6 +60,7 @@ public class Swing {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM d yyyy HH:mm:ss");
         return sdf.format(date);
     }
+
     public String getPlayer() { return player; }
     public String getDescription() { return description; }
     public String getFileName() { return fileName; }
